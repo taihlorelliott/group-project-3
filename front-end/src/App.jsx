@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar.jsx";
 import Home from "./components/Home.jsx";
 import GameIndex from "./components/games/GameIndex.jsx";
 import PlayerIndex from "./components/players/PlayerIndex.jsx";
+import NewGame from "./components/games/NewGame.jsx";
 
 const App = () => {
 	const [currentPage, setCurrentPage] = useState("Home");
@@ -36,6 +37,7 @@ const App = () => {
 				{currentPage === "GameIndex" ? <GameIndex games={games} /> : ""}
 				{currentPage === "PlayerIndex" ? <PlayerIndex /> : ""}
 			</div>
+			<NewGame/>
 		</>
 	);
 };
