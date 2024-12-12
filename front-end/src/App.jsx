@@ -17,45 +17,17 @@ const App = () => {
 		setCurrentPage(event.target.value);
 	};
 
-	const games = [
-		{
-			name: "Game",
-			genre: "Action",
-			year: "1900",
-			platform: "Coffee Maker",
-		},
-		{
-			name: "Game2",
-			genre: "Puzzle",
-			year: "1901",
-			platform: "Coffee Maker 2",
-		},
-	];
-
-    const players = [
-		{
-			name: "Kayla",
-			favoriteGame: "Baking Simulator",
-			gamesPlayed: ["Animal Crossing", "Stardew Valley", "Baking Simulator"],
-		},
-        {
-			name: "Claire",
-			favoriteGame: "Shootblast: Online",
-			gamesPlayed: ["Valorant", "Overwatch", "Shootblast: Online"],
-		}
-	];
-
 	return (
 		<>
 			<Navbar handleSection={handleSection} className="nav" />
 			<div className="display">
 				{currentPage === "Home" ? <Home /> : ""}
-				{currentPage === "GameIndex" ? <GameIndex games={games} /> : ""}
-				{currentPage === "PlayerIndex" ? <PlayerIndex players={players} /> : ""}
+				{currentPage === "GameIndex" ? <GameIndex /> : ""}
+				{currentPage === "PlayerIndex" ? <PlayerIndex /> : ""}
 			</div>
 			<NewGame/>
 		</>
 	);
 };
 
-export {App, GAMES_URL, PLAYERS_URL}
+export {App, GAMES_URL, PLAYERS_URL};
