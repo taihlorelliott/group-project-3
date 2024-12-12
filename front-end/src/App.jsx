@@ -28,13 +28,26 @@ const App = () => {
 		},
 	];
 
+    const players = [
+		{
+			name: "Kayla",
+			favoriteGame: "Baking Simulator",
+			gamesPlayed: ["Animal Crossing", "Stardew Valley", "Baking Simulator"],
+		},
+        {
+			name: "Claire",
+			favoriteGame: "Shootblast: Online",
+			gamesPlayed: ["Valorant", "Overwatch", "Shootblast: Online"],
+		}
+	];
+
 	return (
 		<>
 			<Navbar handleSection={handleSection} className="nav" />
 			<div className="display">
 				{currentPage === "Home" ? <Home /> : ""}
 				{currentPage === "GameIndex" ? <GameIndex games={games} /> : ""}
-				{currentPage === "PlayerIndex" ? <PlayerIndex /> : ""}
+				{currentPage === "PlayerIndex" ? <PlayerIndex players={players} /> : ""}
 			</div>
 		</>
 	);
