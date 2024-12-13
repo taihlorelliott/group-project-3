@@ -35,8 +35,8 @@ const GameIndex = ({handleSection, setStoredGameId}) => {
 				{games.map((game, index) => (
 					<li key={index}>
 						{game.name}
-                        {/* a button function must use the notation below if you want it to accept parameters */}
-                        <button onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
+            {/* a button function must use the notation below if you want it to accept parameters */}
+             <button onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
 					</li>
 				))}
 			</ul>

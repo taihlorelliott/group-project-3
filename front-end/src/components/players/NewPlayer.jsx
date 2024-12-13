@@ -1,14 +1,14 @@
 
 // imports
 import { useState } from "react";
-import { PLAYERS_URL } from "../../App";
+import { GAMES_URL, PLAYERS_URL } from "../../App";
 
 //set up use state
-const NewPlayer = () => {
+const NewPlayer = ({handleSection}) => {
     const [player, setPlayer] = useState({
         name: "",
         favoriteGame: "",
-        gamesPlayed: "",
+        gamesPlayed: [],
     });
 
     // handler function to update newPlayer form
@@ -30,8 +30,45 @@ const NewPlayer = () => {
         setPlayer({
             name: "",
             favoriteGame: "",
-            gamesPlayed: "",
+            gamesPlayed: [],
         });
+    };
+
+    // const handleDropdown = () => {
+    //     const [gameList, setGameList] = useState([]);
+    //     const [favorite, setFavorite] = useState();
+    //     useEffect(() => {
+    //         const getGamesIndex =  async (event) => {
+    //             event.preventDefault();
+    //             try {
+    //                 const res = await fetch(GAMES_URL);
+    //                 let JSONdata = await res.json();
+    //                 setGameList(JSONdata);
+    //             } catch (err) {
+    //                 console.log(err);
+    //             }
+    //         };
+    //         getGamesIndex();
+    //     }, []);
+
+    //     // let optionItems = GAMES_URL.map((item) =>
+    //     //     <option key={item.GAMES_URL}>{item.GAMES_URL}</option>
+    //     // );
+    //     const handleFaveChange = (event) => {
+    //         setFavorite(event.target.value);
+    //     };
+    // };
+
+    const Dropdown = ({options}) => {
+        return (
+            <select>
+                {options.map((option, index) => (
+                    <option key={index} value={option.value}>
+                        {option.name}
+                    </option>
+                ))};
+            </select>
+        );
     };
 
     return (
@@ -39,7 +76,7 @@ const NewPlayer = () => {
             {/* <h2>{player}</h2> */}
             <h2>Add Player</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name: </label>
+                <label htmlFor="name">Username: </label>
                 <input
                     id="name"
                     name="name"
@@ -48,22 +85,32 @@ const NewPlayer = () => {
                     required
                 />
                 <label htmlFor="favoriteGame">Favorite Game: </label>
-                <input
+                {/* <select
                     id="favoriteGame"
                     name="favoriteGame"
-                    value={player.favoriteGame}
-                    onChange={handleChange}
-                    required
-                />
-                <label htmlFor="gamesPlayed">Games Played: </label>
+                    value={favorite}
+                    onChange={handleDropdown}
+                    required>
+                    <option disabled value="">Select Favorite...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select> */}
+                <div>
+                    <Dropdown options={GAMES_URL} />
+                </div>
+
+                {/* we dont need below this but we keep it here */}
+                {/* <label htmlFor="gamesPlayed">Games Played: </label>
                 <input
                     id="gamesPlayed"
                     name="gamesPlayed"
                     value={player.gamesPlayed}
                     onChange={handleChange}
                     required
-                />
-                <button type="submit" value="Add Player"> Submit Player </button>
+                /> */}
+                <button type="submit"> Submit Player </button>
+                <button value="PlayerIndex" onClick={handleSection}>Back to Players</button>
             </form>
         </>
     );
