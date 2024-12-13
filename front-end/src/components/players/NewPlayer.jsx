@@ -1,6 +1,6 @@
 
 // imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GAMES_URL, PLAYERS_URL } from "../../App";
 
 //set up use state
@@ -34,22 +34,24 @@ const NewPlayer = ({handleSection}) => {
         });
     };
 
-    // const handleDropdown = () => {
-    //     const [gameList, setGameList] = useState([]);
-    //     const [favorite, setFavorite] = useState();
-    //     useEffect(() => {
-    //         const getGamesIndex =  async (event) => {
-    //             event.preventDefault();
-    //             try {
-    //                 const res = await fetch(GAMES_URL);
-    //                 let JSONdata = await res.json();
-    //                 setGameList(JSONdata);
-    //             } catch (err) {
-    //                 console.log(err);
-    //             }
-    //         };
-    //         getGamesIndex();
-    //     }, []);
+    const [gameList, setGameList] = useState([]);
+    const [favorite, setFavorite] = useState();
+
+    const handleDropdown = () => {
+    }
+        useEffect(() => {
+            const getGamesIndex =  async () => {
+                try {
+                    const res = await fetch(GAMES_URL);
+                    let JSONdata = await res.json();
+                    setGameList(JSONdata);
+                } catch (err) {
+                    console.log(err);
+                }
+            };
+            getGamesIndex();
+            },
+        []);
 
     //     // let optionItems = GAMES_URL.map((item) =>
     //     //     <option key={item.GAMES_URL}>{item.GAMES_URL}</option>
@@ -59,12 +61,12 @@ const NewPlayer = ({handleSection}) => {
     //     };
     // };
 
-    const Dropdown = ({options}) => {
+    const Dropdown = ({gameList}) => {
         return (
             <select>
-                {options.map((option, index) => (
-                    <option key={index} value={option.value}>
-                        {option.name}
+                {gameList.map((game, index) => (
+                    <option key={index} value={game._id}>
+                        {game.name}
                     </option>
                 ))};
             </select>
@@ -88,8 +90,8 @@ const NewPlayer = ({handleSection}) => {
                 {/* <select
                     id="favoriteGame"
                     name="favoriteGame"
-                    value={favorite}
-                    onChange={handleDropdown}
+                    // value={favorite}
+                    // onChange={handleDropdown}
                     required>
                     <option disabled value="">Select Favorite...</option>
                     <option value="1">1</option>
@@ -97,7 +99,7 @@ const NewPlayer = ({handleSection}) => {
                     <option value="3">3</option>
                 </select> */}
                 <div>
-                    <Dropdown options={GAMES_URL} />
+                    <Dropdown gameList={gameList}/>
                 </div>
 
                 {/* we dont need below this but we keep it here */}
