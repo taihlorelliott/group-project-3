@@ -34,7 +34,7 @@ const GameIndex = ({handleSection}) => {
 			<ul>
 				{games.map((game, index) => (
 					<li key={index}>
-						<ShowGame game={game} />
+						{game.name}
 						<EditGame game={game} />
 					</li>
 				))}

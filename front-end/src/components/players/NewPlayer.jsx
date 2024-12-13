@@ -30,7 +30,7 @@ const NewPlayer = () => {
         setPlayer({
             name: "",
             favoriteGame: "",
-            gamesPlayed: "",
+            gamesPlayed: [],
         });
     };
 
