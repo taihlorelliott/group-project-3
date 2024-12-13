@@ -36,6 +36,9 @@ const NewGame = () => {
 			platform: "",
 			genre: "",
 		});
+
+		
+
 	};
 
 	return (

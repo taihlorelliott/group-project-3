@@ -4,9 +4,14 @@ import ShowGame from "./ShowGame.jsx";
 import { GAMES_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
 import EditGame from "./EditGame.jsx";
+import NewGame from "./NewGame.jsx";
 
 
-const GameIndex = () => {
+
+//put specific prop in {} if calling just one prop
+const GameIndex = ({handleSection}) => {
+	
+
 	const [games, setGames] = useState([]); // set state variable
 	useEffect(() => {
 		const getGamesIndex = async () => { // define function to call it
@@ -21,8 +26,10 @@ const GameIndex = () => {
 		getGamesIndex(); // do dis
 	}, []);
 
+
 	return (
 		<div>
+			<button onClick={handleSection} value="NewGame">Add New Game</button>
 			<h2>Game Index</h2>
 			<ul>
 				{games.map((game, index) => (

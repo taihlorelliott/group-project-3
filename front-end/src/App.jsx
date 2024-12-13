@@ -6,6 +6,8 @@ import Home from "./components/Home.jsx";
 import GameIndex from "./components/games/GameIndex.jsx";
 import PlayerIndex from "./components/players/PlayerIndex.jsx";
 import NewGame from "./components/games/NewGame.jsx";
+import ShowGame from "./components/games/ShowGame.jsx";
+import GameSection from "./components/games/GameSection.jsx";
 
 const GAMES_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/games`;
 const PLAYERS_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/players`;
@@ -22,10 +24,11 @@ const App = () => {
 			<Navbar handleSection={handleSection} className="nav" />
 			<div className="display">
 				{currentPage === "Home" ? <Home /> : ""}
-				{currentPage === "GameIndex" ? <GameIndex /> : ""}
+				{currentPage === "GameSection" ? <GameSection /> : ""}
 				{currentPage === "PlayerIndex" ? <PlayerIndex /> : ""}
+				
 			</div>
-			<NewGame/>
+			
 		</>
 	);
 };
