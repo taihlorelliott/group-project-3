@@ -3,6 +3,8 @@
 import ShowGame from "./ShowGame.jsx";
 import { GAMES_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
+import EditGame from "./EditGame.jsx";
+
 
 const GameIndex = () => {
 	const [games, setGames] = useState([]); // set state variable
@@ -26,6 +28,7 @@ const GameIndex = () => {
 				{games.map((game, index) => (
 					<li key={index}>
 						<ShowGame game={game} />
+						<EditGame game={game} />
 					</li>
 				))}
 			</ul>

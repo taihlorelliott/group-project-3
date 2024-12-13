@@ -3,6 +3,7 @@
 import ShowPlayer from "./ShowPlayer.jsx";
 import { PLAYERS_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
+import EditPlayer from "./EditPlayer.jsx";
 
 const PlayerIndex = () => {
 	const [players, setPlayers] = useState([]); // set state variable
@@ -26,6 +27,7 @@ const PlayerIndex = () => {
 				{players.map((player, index) => (
 					<li key={index}>
 						<ShowPlayer player={player} />
+						<EditPlayer player={player} />
 					</li>
 				))}
 			</ul>
