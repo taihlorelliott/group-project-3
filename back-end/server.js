@@ -58,10 +58,22 @@ app.get('/games', async (req, res) => {
     res.json(foundGames);
 });
 
+//find one game
+app.get('/games/:gameId', async (req, res) => {
+    const foundGame = await Game.findById(req.params.gameId);
+    res.json(foundGame);
+});
+
 //find players
 app.get('/players', async (req, res) => {
     const foundPlayers = await Player.find();
     res.json(foundPlayers);
+});
+
+//find one player
+app.get('/games/:playerId', async (req, res) => {
+    const foundPlayer = await Game.findById(req.params.gameId);
+    res.json(foundPlayer);
 });
 
 //delete games

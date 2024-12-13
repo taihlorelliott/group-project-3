@@ -14,7 +14,7 @@ const NewGame = ({ handleSection }) => {
 	});
 
 	const [formSubmitted, setFormSubmitted] = useState(false);
-	const [subbedGame, setSubbedGame] = useState();
+	const [submittedGame, setSubmittedGame] = useState();
 
 	// handle change from input
 	const handleInputChange = (event) => {
@@ -25,7 +25,7 @@ const NewGame = ({ handleSection }) => {
 	//submit form data
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const response = await fetch(GAMES_URL, {
+		await fetch(GAMES_URL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -33,7 +33,7 @@ const NewGame = ({ handleSection }) => {
 			body: JSON.stringify(game),
 		});
 
-        setSubbedGame(game.name)
+		setSubmittedGame(game.name);
 
 		setGame({
 			name: "",
@@ -89,7 +89,7 @@ const NewGame = ({ handleSection }) => {
 						required
 					/>
 				</div>
-                {formSubmitted ? <p>{subbedGame} submitted successfully!</p> : ""}
+				{formSubmitted ? <p>{submittedGame} submitted successfully!</p> : "" }
 				<div>
 					<button type="submit">Submit Game</button>
 					<button onClick={handleSection} value="GameIndex">
