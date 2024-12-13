@@ -8,6 +8,7 @@ import PlayerIndex from "./components/players/PlayerIndex.jsx";
 import NewGame from "./components/games/NewGame.jsx";
 import ShowGame from "./components/games/ShowGame.jsx";
 import GameSection from "./components/games/GameSection.jsx";
+import PlayerSection from "./components/players/PlaySection.jsx";
 
 const GAMES_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/games`;
 const PLAYERS_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/players`;
@@ -25,7 +26,7 @@ const App = () => {
 			<div className="display">
 				{currentPage === "Home" ? <Home /> : ""}
 				{currentPage === "GameSection" ? <GameSection /> : ""}
-				{currentPage === "PlayerIndex" ? <PlayerIndex /> : ""}
+				{currentPage === "PlayerSection" ? <PlayerSection /> : ""}
 				
 			</div>
 			
