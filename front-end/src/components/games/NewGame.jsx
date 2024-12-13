@@ -5,13 +5,16 @@ import { useState } from "react";
 import { GAMES_URL } from "../../App";
 
 //set up use state
-const NewGame = () => {
+const NewGame = ({ handleSection }) => {
 	const [game, setGame] = useState({
 		name: "",
 		year: "",
 		platform: "",
 		genre: "",
 	});
+
+	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [subbedGame, setSubbedGame] = useState();
 
 	// handle change from input
 	const handleInputChange = (event) => {
@@ -30,6 +33,8 @@ const NewGame = () => {
 			body: JSON.stringify(game),
 		});
 
+        setSubbedGame(game.name)
+
 		setGame({
 			name: "",
 			year: "",
@@ -37,8 +42,7 @@ const NewGame = () => {
 			genre: "",
 		});
 
-		
-
+		setFormSubmitted(true);
 	};
 
 	return (
@@ -46,7 +50,7 @@ const NewGame = () => {
 			<h2>Add Game</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label>Name:</label>
+					<label>Name: </label>
 					<input
 						type="text"
 						name="name"
@@ -56,7 +60,7 @@ const NewGame = () => {
 					/>
 				</div>
 				<div>
-					<label>Year Published:</label>
+					<label>Year Published: </label>
 					<input
 						type="text"
 						name="year"
@@ -66,7 +70,7 @@ const NewGame = () => {
 					/>
 				</div>
 				<div>
-					<label>Platform:</label>
+					<label>Platform: </label>
 					<input
 						type="text"
 						name="platform"
@@ -76,7 +80,7 @@ const NewGame = () => {
 					/>
 				</div>
 				<div>
-					<label>Genre:</label>
+					<label>Genre: </label>
 					<input
 						type="text"
 						name="genre"
@@ -85,7 +89,13 @@ const NewGame = () => {
 						required
 					/>
 				</div>
-				<input type="submit" value="Add Game" />
+                {formSubmitted ? <p>{subbedGame} submitted successfully!</p> : ""}
+				<div>
+					<button type="submit">Submit Game</button>
+					<button onClick={handleSection} value="GameIndex">
+						Back to Games
+					</button>
+				</div>
 			</form>
 		</div>
 	);
