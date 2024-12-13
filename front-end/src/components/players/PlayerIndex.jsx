@@ -1,11 +1,15 @@
 // show all games
 
-import ShowPlayer from "./ShowPlayer.jsx";
+// import ShowPlayer from "./ShowPlayer.jsx";
 import { PLAYERS_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
 import EditPlayer from "./EditPlayer.jsx";
 
-const PlayerIndex = () => {
+
+
+
+
+const PlayerIndex = ({handleSection}) => {
 	const [players, setPlayers] = useState([]); // set state variable
 	useEffect(() => {
 		const getPlayerIndex = async () => { // define function to call it
@@ -22,11 +26,12 @@ const PlayerIndex = () => {
 
 	return (
 		<div>
+			<button onClick={handleSection} value="NewPlayer">Add New Player</button>
 			<h2>Player Index</h2>
 			<ul>
 				{players.map((player, index) => (
 					<li key={index}>
-						<ShowPlayer player={player} />
+						{player.name}
 						<EditPlayer player={player} />
 					</li>
 				))}

@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import Home from "./components/Home.jsx";
-import GameIndex from "./components/games/GameIndex.jsx";
-import PlayerIndex from "./components/players/PlayerIndex.jsx";
-import NewGame from "./components/games/NewGame.jsx";
-import ShowGame from "./components/games/ShowGame.jsx";
+// import GameIndex from "./components/games/GameIndex.jsx";
+// import PlayerIndex from "./components/players/PlayerIndex.jsx";
+// import NewGame from "./components/games/NewGame.jsx";
+// import ShowGame from "./components/games/ShowGame.jsx";
 import GameSection from "./components/games/GameSection.jsx";
-import PlayerSection from "./components/players/PlaySection.jsx";
+import PlayerSection from "./components/players/PlayerSection.jsx";
 
 const GAMES_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/games`;
 const PLAYERS_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/players`;
@@ -27,7 +27,6 @@ const App = () => {
 				{currentPage === "Home" ? <Home /> : ""}
 				{currentPage === "GameSection" ? <GameSection /> : ""}
 				{currentPage === "PlayerSection" ? <PlayerSection /> : ""}
-				
 			</div>
 			
 		</>
