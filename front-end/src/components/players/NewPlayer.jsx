@@ -10,7 +10,6 @@ const NewPlayer = ({ handleSection }) => {
 
     const [submissionSuccess, setSubmissionSuccess] = useState(false); 
     const [gameList, setGameList] = useState([]);
-    const [favorite, setFavorite] = useState();
 
     const handleChange = (event) => {
         setPlayer({ ...player, [event.target.name]: event.target.value });
@@ -60,7 +59,7 @@ const NewPlayer = ({ handleSection }) => {
                     Select Favorite...
                 </option>
                 {gameList.map((game, index) => (
-                    <option key={index} value={game._id}>
+                    <option key={index} value={game.name}>
                         {game.name}
                     </option>
                 ))}
