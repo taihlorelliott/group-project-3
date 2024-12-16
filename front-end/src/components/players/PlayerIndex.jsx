@@ -18,9 +18,9 @@ const PlayerIndex = ({ handleSection, setStoredPlayerId }) => {
     }, []);
 
     // Handles setting stored player ID and navigating to the correct section
-    const sectionAndStore = (id, section) => {
+    const sectionAndStore = (id, event) => {
         setStoredPlayerId(id);
-        handleSection(section);
+        handleSection(event);
     };
 
     return (
@@ -32,7 +32,7 @@ const PlayerIndex = ({ handleSection, setStoredPlayerId }) => {
                     <li key={index}>
                         {player.name}
                         {/* Correctly pass section name as a parameter */}
-                        <button onClick={() => sectionAndStore(player._id, "ShowPlayer")}>
+                        <button onClick={() => sectionAndStore(player._id, event)} value="ShowPlayer">
                             More Info
                         </button>
                     </li>

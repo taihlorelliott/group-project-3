@@ -10,6 +10,7 @@ const ShowPlayer = ({ handleSection, storedPlayerId }) => {
 				const res = await fetch(`${PLAYERS_URL}/${storedPlayerId}`);
 				let JSONdata = await res.json();
 				setPlayer(JSONdata);
+                console.log(player)
 			} catch (err) {
 				console.log(err);
 			}
