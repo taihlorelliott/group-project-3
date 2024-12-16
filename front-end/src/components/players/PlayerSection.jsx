@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import NewPlayer from './NewPlayer';
-import PlayerIndex from './PlayerIndex.jsx'
-import ShowPlayer from './ShowPlayer.jsx';
-import EditPlayer from './EditPlayer.jsx';
+import PlayerIndex from './PlayerIndex'
+import ShowPlayer from './ShowPlayer';
+import EditPlayer from './EditPlayer';
 
 
 const PlayerSection = () => {
@@ -17,10 +17,17 @@ const PlayerSection = () => {
 
     return (
         <>
-         {currentPage === "PlayerIndex" ? <PlayerIndex handleSection={handleSection}/> : ""}
-         {currentPage === "NewPlayer" ? <NewPlayer handleSection={handleSection}/> : ""}
-         {currentPage === "ShowPlayer" ? <ShowPlayer handleSection={handleSection} storedPlayerId={storedPlayerId}/> : ""}
-         {currentPage === "EditPlayer" ? <EditPlayer handleSection={handleSection} storedPlayerId={storedPlayerId} setStoredPlayerId={setStoredPlayerId}/> : ""}
+            {/* ternary + props for Player Index page */}
+            {currentPage === "PlayerIndex" ? <PlayerIndex handleSection={handleSection} setStoredPlayerId={setStoredPlayerId}/> : ""}
+
+            {/* ternary + props for New Player form */}
+            {currentPage === "NewPlayer" ? <NewPlayer handleSection={handleSection}/> : ""}
+
+            {/* ternary + props for Show Player page */}
+            {currentPage === "ShowPlayer" ? <ShowPlayer handleSection={handleSection} storedPlayerId={storedPlayerId}/> : ""}
+
+            {/* ternary + props for Edit Player form */}
+            {currentPage === "EditPlayer" ? <EditPlayer handleSection={handleSection} storedPlayerId={storedPlayerId} setStoredPlayerId={setStoredPlayerId}/> : ""}
         </>
     );
 };

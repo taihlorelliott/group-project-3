@@ -71,8 +71,8 @@ app.get('/players', async (req, res) => {
 });
 
 //find one player
-app.get('/games/:playerId', async (req, res) => {
-    const foundPlayer = await Game.findById(req.params.gameId);
+app.get('/players/:playerId', async (req, res) => {
+    const foundPlayer = await Player.findById(req.params.playerId);
     res.json(foundPlayer);
 });
 
