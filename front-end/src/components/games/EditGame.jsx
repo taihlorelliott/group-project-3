@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { GAMES_URL } from "../../App.jsx";
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '../../index.css';
+
+
 const EditGame = ({ handleSection, storedGameId }) => {
 	const [game, setGame] = useState({name: "", year: "", platform: "", genre: ""}); // set state variable
 
@@ -48,8 +52,9 @@ const EditGame = ({ handleSection, storedGameId }) => {
 
 	return (
 		<div>
+			<h2 className="text-danger ms-2">Edit Game</h2>
 			<form onSubmit={handleSubmit}>
-				<div>
+				<div className="bg-dark">
 					<label htmlFor="name">Name:</label>
 					<input
 						type="text"
@@ -88,8 +93,8 @@ const EditGame = ({ handleSection, storedGameId }) => {
 				{isComplete ? <p>Game updated successfully!</p> : ""}
 				<div>
 					{/* "save" submits, "back" returns to show */}
-					<button type="submit">Save</button>
-					<button onClick={handleSection} value="ShowGame">
+					<button className="btn btn-info me-2 btn-sm ms-2" type="submit">Save</button>
+					<button className="btn btn-info me-2 btn-sm ms-2" onClick={handleSection} value="ShowGame">
 						Back to Game
 					</button>
 				</div>
