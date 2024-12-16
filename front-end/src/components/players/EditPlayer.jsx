@@ -7,9 +7,14 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 	// All games in database
     const [gameList, setGameList] = useState([]);
 
-	// Games to be added to gamesPlayed list
-	const [gamesPlayedHolder, setGamesPlayedHolder] = useState([]);
-	const [holderGame, setHolderGame] = useState();
+    useEffect(() => {
+        const getGamesIndex = async () => {
+            const res = await fetch(GAMES_URL);
+            let JSONdata = await res.json();
+            setGameList(JSONdata);
+        };
+        getGamesIndex();
+    }, []);
 
 	// load game data from database using stored ID
 	useEffect(() => {
@@ -19,16 +24,16 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 				const res = await fetch(`${PLAYERS_URL}/${storedPlayerId}`);
 				let JSONdata = await res.json();
 				setPlayer(JSONdata);
+                setGamesPlayedHolder(JSONdata.gamesPlayed)
 			} catch (err) {
 				console.log(err);
 			}
 		};
 		getPlayerData(); // do dis
-		// setGamesPlayedHolder(player.gamesPlayed);
-	}, []);
+	}, [storedPlayerId]);
 
-	// for conditional "update successful" message
-	const [isComplete, setIsComplete] = useState(false);
+	// // for conditional "update successful" message
+	// const [isComplete, setIsComplete] = useState(false);
 
 	const handleInputChange = (event) => {
 		// handleInputChange is called when you type in input box
@@ -42,6 +47,7 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 		event.preventDefault(); // Prevents page reload
 		// Send put request to server to update game info. game._id is individual game info to be edited
 		setPlayer({...player, gamesPlayed: gamesPlayedHolder})
+        // fetch request for updating player in database
 		await fetch(`${PLAYERS_URL}/${storedPlayerId}`, {
 			method: "PUT",
 			headers: {
@@ -51,32 +57,28 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 			// stringify is what it sounds like, turns JSON data from input into a string. Pretty cute
 			body: JSON.stringify(player),
 		});
-		// for conditional success message
-		setIsComplete(true);
-		
+		// // for conditional success message
+		// setIsComplete(true);
 	};
+
+    // Games to be added to gamesPlayed list
+	const [gamesPlayedHolder, setGamesPlayedHolder] = useState([]);
+	const [holderGame, setHolderGame] = useState();
 
 	const handleGameHolderChange = (event) => {
 		setHolderGame(event.target.value);
 	}
 
 	const addToHolder = () => {
-		setGamesPlayedHolder([...gamesPlayedHolder, holderGame]);
+        if (holderGame) {
+            setGamesPlayedHolder([...gamesPlayedHolder, holderGame]);
+        }
 	}
 
 	const removeFromHolder = (index) => {
 		const filteredArray = gamesPlayedHolder.filter((_, i) => i !== index)
 		setGamesPlayedHolder(filteredArray)
 	}
-
-	useEffect(() => {
-        const getGamesIndex = async () => {
-            const res = await fetch(GAMES_URL);
-            let JSONdata = await res.json();
-            setGameList(JSONdata);
-        };
-        getGamesIndex();
-    }, []);
 
     const FavoriteDropdown = ({ gameList }) => {
         return (
@@ -99,20 +101,22 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 
     const PlayedDropdown = ({ gameList }) => {
         return (
-            <select
-                name="holderGame"
-                value={holderGame}
-                onChange={handleGameHolderChange}
-            >
-                <option disabled value="">
-                    Select a game...
-                </option>
-                {gameList.map((game, index) => (
-                    <option key={index} value={game.name}>
-                        {game.name}
+            <>
+                <select
+                    name="holderGame"
+                    value={holderGame}
+                    onChange={handleGameHolderChange}
+                >
+                    <option value="">
+                        Select a game...
                     </option>
-                ))}
-            </select>
+                    {gameList.map((game, index) => (
+                        <option key={index} value={game.name}>
+                            {game.name}
+                        </option>
+                    ))}
+                </select>
+            </>
         );
     };
 
@@ -130,32 +134,30 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 					/>
 				</div>
 				<div>
-                <label htmlFor="favoriteGame">Favorite Game: </label>
-                <FavoriteDropdown gameList={gameList} />
+                    <label htmlFor="favoriteGame">Favorite Game: </label>
+                    <FavoriteDropdown gameList={gameList} />
 				</div>
 				<div>
-				
 					<label htmlFor="gamesPlayed">Games Played:</label>
 					<PlayedDropdown gameList={gameList} />
-					<button onClick={addToHolder}>Add to games played</button>
-
+                    <button onClick={addToHolder}>Add to Games Played</button>
 				</div>
 				<div>
-				<ul>
-				{gamesPlayedHolder.map((game, index) => (
-                    
-					<li key={index}>
-					{game}
-					<button onClick={() => removeFromHolder(index)}>
-					Remove
-					</button>
-					</li> 
-
-                ))}
-				</ul>
+                    <ul>
+                        {gamesPlayedHolder.map((game, index) => (
+                            <li key={index}>
+                                {game}
+                                <button onClick={() => removeFromHolder(index)}>
+                                Remove
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
 				</div>
 				
-				{isComplete ? <p>Player updated successfully!</p> : ""}
+                {/* conditional success message ternary
+				{isComplete === true ? <p>Player updated successfully!</p> : ""} */}
+
 				<div>
 					{/* "save" submits, "back" returns to show */}
 					<button type="submit">Save</button>

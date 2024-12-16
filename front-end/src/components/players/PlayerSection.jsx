@@ -27,7 +27,7 @@ const PlayerSection = () => {
             {currentPage === "ShowPlayer" ? <ShowPlayer handleSection={handleSection} storedPlayerId={storedPlayerId}/> : ""}
 
             {/* ternary + props for Edit Player form */}
-            {currentPage === "EditPlayer" ? <EditPlayer handleSection={handleSection} storedPlayerId={storedPlayerId} setStoredPlayerId={setStoredPlayerId}/> : ""}
+            {currentPage === "EditPlayer" ? <EditPlayer handleSection={handleSection} storedPlayerId={storedPlayerId} setStoredPlayerId={setStoredPlayerId} /> : ""}
         </>
     );
 };
