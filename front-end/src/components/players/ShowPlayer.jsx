@@ -1,6 +1,22 @@
-// show specific player
+import { useState, useEffect } from "react";
+import { PLAYERS_URL } from "../../App";
 
-const ShowPlayer = ({ player }) => {
+const ShowPlayer = ({ handleSection, storedPlayerId }) => {
+	const [player, setPlayer] = useState({});
+
+	useEffect(() => {
+		const getPlayerData = async () => {
+			try {
+				const res = await fetch(`${PLAYERS_URL}/${storedPlayerId}`);
+				let JSONdata = await res.json();
+				setPlayer(JSONdata);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getPlayerData();
+	}, []);
+
 	return (
 		<>
 			<div className="ShowPlayerDiv">
@@ -12,6 +28,14 @@ const ShowPlayer = ({ player }) => {
                     <li key={index}>{game}</li>
                 ))}
                 </ul>
+			</div>
+			<div>
+				<button onClick={handleSection} value="EditPlayer">
+					Edit
+				</button>
+				<button onClick={handleSection} value="PlayerIndex">
+					Back to Players
+				</button>
 			</div>
 		</>
 	);

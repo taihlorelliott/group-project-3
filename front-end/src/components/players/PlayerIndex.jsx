@@ -1,43 +1,45 @@
-// show all games
-
-// import ShowPlayer from "./ShowPlayer.jsx";
 import { PLAYERS_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
-import EditPlayer from "./EditPlayer.jsx";
 
+const PlayerIndex = ({ handleSection, setStoredPlayerId }) => {
+    const [players, setPlayers] = useState([]); // Set state variable
 
+    useEffect(() => {
+        const getPlayerIndex = async () => { // Define function to call it
+            try {
+                const res = await fetch(PLAYERS_URL);
+                let JSONdata = await res.json();
+                setPlayers(JSONdata);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getPlayerIndex(); // Fetch players
+    }, []);
 
+    // Handles setting stored player ID and navigating to the correct section
+    const sectionAndStore = (id, section) => {
+        setStoredPlayerId(id);
+        handleSection(section);
+    };
 
-
-const PlayerIndex = ({handleSection}) => {
-	const [players, setPlayers] = useState([]); // set state variable
-	useEffect(() => {
-		const getPlayerIndex = async () => { // define function to call it
-			try {
-				const res = await fetch(PLAYERS_URL);
-				let JSONdata = await res.json();
-				setPlayers(JSONdata);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		getPlayerIndex(); // do dis
-	}, []);
-
-	return (
-		<div>
-			<button onClick={handleSection} value="NewPlayer">Add New Player</button>
-			<h2>Player Index</h2>
-			<ul>
-				{players.map((player, index) => (
-					<li key={index}>
-						{player.name}
-						<EditPlayer player={player} />
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+    return (
+        <div>
+            <h2>Player Index</h2>
+            <button onClick={handleSection} value="NewPlayer">Add New Player</button>
+            <ul>
+                {players.map((player, index) => (
+                    <li key={index}>
+                        {player.name}
+                        {/* Correctly pass section name as a parameter */}
+                        <button onClick={() => sectionAndStore(player._id, "ShowPlayer")}>
+                            More Info
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default PlayerIndex;
