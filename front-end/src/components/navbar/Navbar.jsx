@@ -1,11 +1,14 @@
-import './Navbar.css';
+import '../../index.css';
+
+// bootstrap 
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Navbar = ({handleSection}) => {
     return (
-        <nav id="top-navbar">
-            <button onClick={handleSection} value="Home"> Home </button>
-            <button onClick={handleSection} value="GameSection"> Games </button>
-            <button onClick={handleSection} value="PlayerSection"> Players </button>
+        <nav className="bg-dark mt-2 ms-2 mb-2" id="top-navbar">
+            <button onClick={handleSection} className="btn btn-outline-info me-2" value="Home"> Home </button>
+            <button onClick={handleSection} className="btn btn-outline-info me-2" value="GameSection"> Games </button>
+            <button onClick={handleSection} className="btn btn-outline-info me-2" value="PlayerSection"> Players </button>
         </nav>
     );
 };
