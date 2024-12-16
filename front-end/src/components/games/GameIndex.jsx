@@ -1,4 +1,8 @@
 // show all games
+import '../../index.css';
+
+// bootstrap 
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { GAMES_URL } from "../../App.jsx";
 import { useState, useEffect } from 'react';
@@ -28,15 +32,15 @@ const GameIndex = ({handleSection, setStoredGameId}) => {
     }
 
 	return (
-		<div>
+		<div className="bg-dark text-black">
 			<h2>Game Index</h2>
-            <button onClick={handleSection} value="NewGame">Add New Game</button>
+            <button className="btn btn-outline-info me-2 btn-sm ms-2" onClick={handleSection} value="NewGame">Add New Game</button>
 			<ul>
 				{games.map((game, index) => (
-					<li key={index}>
+					<li className="mt-2" key={index}>
 						{game.name}
             {/* a button function must use the notation below if you want it to accept parameters */}
-             <button onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
+             <button className="btn btn-outline-info me-2 btn-sm ms-2" onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
 					</li>
 				))}
 			</ul>

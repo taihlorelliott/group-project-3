@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { PLAYERS_URL } from "../../App";
 
+
 const ShowPlayer = ({ handleSection, storedPlayerId }) => {
 	const [player, setPlayer] = useState({});
 
