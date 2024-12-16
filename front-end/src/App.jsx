@@ -6,6 +6,7 @@ import Home from "./components/Home.jsx";
 import GameSection from "./components/games/GameSection.jsx";
 import PlayerSection from "./components/players/PlayerSection.jsx";
 import './index.css';
+import './app.scss'
 
 // bootstrap 
 import 'bootstrap/dist/css/bootstrap.min.css'

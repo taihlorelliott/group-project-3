@@ -32,15 +32,15 @@ const GameIndex = ({handleSection, setStoredGameId}) => {
     }
 
 	return (
-		<div className="bg-dark text-black">
-			<h2>Game Index</h2>
-            <button className="btn btn-outline-info me-2 btn-sm ms-2" onClick={handleSection} value="NewGame">Add New Game</button>
-			<ul>
+		<div className="bg-dark">
+			<h2 className="text-danger ms-2">Game Index</h2>
+            <button className="btn btn-info me-2 btn-sm ms-2" onClick={handleSection} value="NewGame">Add New Game</button>
+			<ul className="d-flex flex-wrap">
 				{games.map((game, index) => (
-					<li className="mt-2" key={index}>
+					<li className="d-grid col-3 mt-3 me-3 text-light text-center list-unstyled border border-info rounded px-3 py-3 w-auto" key={index}>
 						{game.name}
             {/* a button function must use the notation below if you want it to accept parameters */}
-             <button className="btn btn-outline-info me-2 btn-sm ms-2" onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
+             <button className="btn btn-outline-danger me-2 btn-sm ms-2 mt-2" onClick={() => sectionAndStore(game._id, event)} value="ShowGame">More Info</button>
 					</li>
 				))}
 			</ul>
