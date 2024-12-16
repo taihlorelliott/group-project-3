@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { GAMES_URL } from "../../App";
 
 const ShowGame = ({ handleSection, storedGameId }) => {
-	const [game, setGame] = useState({}); // set state variable
+	const [game, setGame] = useState({name: "", year: "", platform: "", genre: ""}); // set state variable
 
 	useEffect(() => {
 		const getGameData = async () => {
