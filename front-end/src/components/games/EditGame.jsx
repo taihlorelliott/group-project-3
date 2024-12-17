@@ -50,6 +50,13 @@ const EditGame = ({ handleSection, storedGameId }) => {
 		setIsComplete(true);
 	};
 
+    const handleDelete = async (event) => {
+		await fetch(`${GAMES_URL}/${storedGameId}`, {
+			method: "DELETE",
+		});
+        handleSection(event)
+	};
+
 	return (
 		<div className="bg-dark">
 			<h2 className="text-danger ms-2">Edit Game</h2>
@@ -98,6 +105,7 @@ const EditGame = ({ handleSection, storedGameId }) => {
 				<div>
 					{/* "save" submits, "back" returns to show */}
 					<button className="btn btn-danger me-2 btn ms-2" type="submit">Save</button>
+                    <button className="btn btn-danger me-2 btn ms-2" value="GameIndex" onClick={() => {handleDelete(event)}}>Delete</button>
 					<button className="btn btn-danger me-2 btn ms-2" onClick={handleSection} value="ShowGame">
 						Back to Game
 					</button>

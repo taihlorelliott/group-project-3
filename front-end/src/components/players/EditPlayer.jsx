@@ -61,6 +61,13 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 		// setIsComplete(true);
 	};
 
+    const handleDelete = async (event) => {
+		await fetch(`${PLAYERS_URL}/${storedPlayerId}`, {
+			method: "DELETE",
+		});
+        handleSection(event)
+	};
+
     // Games to be added to gamesPlayed list
 	const [gamesPlayedHolder, setGamesPlayedHolder] = useState([]);
 	const [holderGame, setHolderGame] = useState();
@@ -122,7 +129,6 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
         );
     };
 
-
 	return (
 		<div className="bg-dark">
             <h2 className="text-danger ms-2">Edit Player</h2>
@@ -166,6 +172,7 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 				<div>
 					{/* "save" submits, "back" returns to show */}
 					<button className="btn btn-danger me-2 ms-2" type="submit">Save</button>
+                    <button className="btn btn-danger me-2 btn ms-2" value="PlayerIndex" onClick={() => {handleDelete(event)}}>Delete</button>
 					<button className="btn btn-danger me-2 ms-2" onClick={handleSection} value="ShowPlayer">
 						Back to Player
 					</button>
