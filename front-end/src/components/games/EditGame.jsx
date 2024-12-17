@@ -51,50 +51,54 @@ const EditGame = ({ handleSection, storedGameId }) => {
 	};
 
 	return (
-		<div>
+		<div className="bg-dark">
 			<h2 className="text-danger ms-2">Edit Game</h2>
-			<form onSubmit={handleSubmit}>
-				<div className="bg-dark">
-					<label htmlFor="name">Name:</label>
+			<form onSubmit={handleSubmit} className="ms-2">
+				<div className="mb-3">
+					<label htmlFor="name" className="text-light form-label ms-1">Name:</label>
 					<input
 						type="text"
 						name="name"
 						value={game.name}
 						onChange={handleInputChange}
+                        className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label htmlFor="year">Year:</label>
+				<div className="mb-3">
+					<label htmlFor="year" className="text-light form-label ms-1">Year:</label>
 					<input
 						type="text"
 						name="year"
 						value={game.year}
 						onChange={handleInputChange}
+                        className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label htmlFor="platform">Platform:</label>
+				<div className="mb-3">
+					<label htmlFor="platform" className="text-light form-label ms-1">Platform:</label>
 					<input
 						type="text"
 						name="platform"
 						value={game.platform}
 						onChange={handleInputChange}
+                        className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label htmlFor="genre">Genre:</label>
+				<div className="mb-3">
+					<label htmlFor="genre" className="text-light form-label ms-1">Genre:</label>
 					<input
 						type="text"
 						name="genre"
 						value={game.genre}
 						onChange={handleInputChange}
+                        className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
 				{isComplete ? <p>Game updated successfully!</p> : ""}
 				<div>
 					{/* "save" submits, "back" returns to show */}
-					<button className="btn btn-info me-2 btn-sm ms-2" type="submit">Save</button>
-					<button className="btn btn-info me-2 btn-sm ms-2" onClick={handleSection} value="ShowGame">
+					<button className="btn btn-danger me-2 btn ms-2" type="submit">Save</button>
+					<button className="btn btn-danger me-2 btn ms-2" onClick={handleSection} value="ShowGame">
 						Back to Game
 					</button>
 				</div>
