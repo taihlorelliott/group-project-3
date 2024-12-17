@@ -46,53 +46,57 @@ const NewGame = ({ handleSection }) => {
 	};
 
 	return (
-		<div>
-			<h2>Add Game</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label>Name: </label>
+		<div className="bg-dark">
+			<h2 className="text-danger ms-2">Add Game</h2>
+			<form onSubmit={handleSubmit} className="ms-2">
+				<div className="mb-3">
+					<label className="text-light form-label ms-1">Name: </label>
 					<input
 						type="text"
 						name="name"
 						value={game.name}
 						onChange={handleInputChange}
 						required
+						className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label>Year Published: </label>
+				<div className="mb-3">
+					<label className="text-light form-label ms-1">Year Published: </label>
 					<input
 						type="text"
 						name="year"
 						value={game.year}
 						onChange={handleInputChange}
 						required
+						className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label>Platform: </label>
+				<div className="mb-3">
+					<label className="text-light form-label ms-1">Platform: </label>
 					<input
 						type="text"
 						name="platform"
 						value={game.platform}
 						onChange={handleInputChange}
 						required
+						className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div>
-					<label>Genre: </label>
+				<div className="mb-3">
+					<label className="text-light form-label ms-1">Genre: </label>
 					<input
 						type="text"
 						name="genre"
 						value={game.genre}
 						onChange={handleInputChange}
 						required
+						className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
 				{formSubmitted ? <p>{submittedGame} submitted successfully!</p> : "" }
 				<div>
-					<button type="submit">Submit Game</button>
-					<button onClick={handleSection} value="GameIndex">
+					<button className="btn btn-danger me-2 btn ms-2" type="submit">Submit Game</button>
+					<button className="btn btn-danger me-2 btn ms-2" onClick={handleSection} value="GameIndex">
 						Back to Games
 					</button>
 				</div>
