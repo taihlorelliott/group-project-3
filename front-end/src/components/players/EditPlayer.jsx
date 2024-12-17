@@ -36,11 +36,13 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 	// const [isComplete, setIsComplete] = useState(false);
 
 	const handleInputChange = (event) => {
-		// handleInputChange is called when you type in input box
-		const { name, value } = event.target;
-		// ... spread keeps the OG info from what was there before you edit
-		// [name] will either be name, year, platform, or genre (value is what you're typing)
-		setPlayer({ ...player, [name]: value });
+		if (event.target.value) {
+            // handleInputChange is called when you type in input box
+            const { name, value } = event.target;
+            // ... spread keeps the OG info from what was there before you edit
+            // [name] will either be name, year, platform, or genre (value is what you're typing)
+            setPlayer({ ...player, [name]: value });
+        }
 	};
 
 	const handleSubmit = async (event) => {
@@ -95,7 +97,7 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
                 onChange={handleInputChange}
                 className="form-control bg-info bg-opacity-25 text-light w-50"
             >
-                <option disabled value="" className="bg-dark">
+                <option value="" className="bg-dark">
                     Select Favorite...
                 </option>
                 {gameList.map((game, index) => (
@@ -167,7 +169,7 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 				</div>
 				
                 {/* conditional success message ternary
-				{isComplete === true ? <p>Player updated successfully!</p> : ""} */}
+				{isComplete === true ? <p className="text-light ms-2">Player updated successfully!</p> : ""} */}
 
 				<div>
 					{/* "save" submits, "back" returns to show */}

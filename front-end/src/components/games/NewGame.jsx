@@ -93,7 +93,7 @@ const NewGame = ({ handleSection }) => {
 						className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				{formSubmitted ? <p>{submittedGame} submitted successfully!</p> : "" }
+				{formSubmitted ? <p className="text-light ms-2">{submittedGame} submitted successfully!</p> : "" }
 				<div>
 					<button className="btn btn-danger me-2 btn ms-2" type="submit">Submit Game</button>
 					<button className="btn btn-danger me-2 btn ms-2" onClick={handleSection} value="GameIndex">
