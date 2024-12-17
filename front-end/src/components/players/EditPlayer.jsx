@@ -133,19 +133,19 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div>
-                    <label htmlFor="favoriteGame">Favorite Game: </label>
+				<div class="dropdown">
+                    <label htmlFor="favoriteGame" >Favorite Game: </label>
                     <FavoriteDropdown gameList={gameList} />
 				</div>
-				<div>
+				<div class="dropdown">
 					<label htmlFor="gamesPlayed">Games Played:</label>
 					<PlayedDropdown gameList={gameList} />
                     <button onClick={addToHolder}>Add to Games Played</button>
 				</div>
 				<div>
-                    <ul>
+                    <ul class="list-group">
                         {gamesPlayedHolder.map((game, index) => (
-                            <li key={index}>
+                            <li class="list-group-item" key={index}>
                                 {game}
                                 <button onClick={() => removeFromHolder(index)}>
                                 Remove
@@ -160,8 +160,8 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 
 				<div>
 					{/* "save" submits, "back" returns to show */}
-					<button type="submit">Save</button>
-					<button onClick={handleSection} value="ShowPlayer">
+					<button className="btn btn-info me-2 btn-sm ms-2" type="submit">Save</button>
+					<button className="btn btn-info me-2 btn-sm ms-2" onClick={handleSection} value="ShowPlayer">
 						Back to Player
 					</button>
 				</div>
