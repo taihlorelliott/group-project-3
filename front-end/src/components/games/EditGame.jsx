@@ -101,7 +101,7 @@ const EditGame = ({ handleSection, storedGameId }) => {
                         className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				{isComplete ? <p>Game updated successfully!</p> : ""}
+				{isComplete ? <p className="text-light ms-2">Game updated successfully!</p> : ""}
 				<div>
 					{/* "save" submits, "back" returns to show */}
 					<button className="btn btn-danger me-2 btn ms-2" type="submit">Save</button>

@@ -90,7 +90,7 @@ const NewPlayer = ({ handleSection }) => {
                 <div className="mb-3">
                    <button type="submit" className="btn btn-danger me-2 ms-2">Submit Player</button>
                     {/* Success message */}
-                    {submissionSuccess && <p>Player submitted successfully!</p>}
+                    {submissionSuccess && <p className="text-light ms-2">Player submitted successfully!</p>}
                     <button value="PlayerIndex" onClick={handleSection} className="btn btn-danger me-2 ms-2">
                         Back to Players
                     </button> 
