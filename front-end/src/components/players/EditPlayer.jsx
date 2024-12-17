@@ -86,12 +86,13 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
                 name="favoriteGame"
                 value={player.favoriteGame}
                 onChange={handleInputChange}
+                className="form-control bg-info bg-opacity-25 text-light w-50"
             >
-                <option disabled value="">
+                <option disabled value="" className="bg-dark">
                     Select Favorite...
                 </option>
                 {gameList.map((game, index) => (
-                    <option key={index} value={game.name}>
+                    <option key={index} value={game.name} className="bg-dark">
                         {game.name}
                     </option>
                 ))}
@@ -106,12 +107,13 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
                     name="holderGame"
                     value={holderGame}
                     onChange={handleGameHolderChange}
+                    className="form-control bg-info bg-opacity-25 text-light w-50"
                 >
-                    <option value="">
+                    <option value="" className="bg-dark">
                         Select a game...
                     </option>
                     {gameList.map((game, index) => (
-                        <option key={index} value={game.name}>
+                        <option key={index} value={game.name} className="bg-dark">
                             {game.name}
                         </option>
                     ))}
@@ -122,33 +124,36 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor="name">Username:</label>
+		<div className="bg-dark">
+            <h2 className="text-danger ms-2">Edit Player</h2>
+			<form onSubmit={handleSubmit} className="ms-2">
+				<div className="mb-3">
+					<label htmlFor="name" className="text-light form-label ms-1">Username:</label>
 					<input
 						type="text"
 						name="name"
 						value={player.name}
 						onChange={handleInputChange}
+                        className="form-control bg-info bg-opacity-25 text-light w-50"
 					/>
 				</div>
-				<div class="dropdown">
-                    <label htmlFor="favoriteGame" >Favorite Game: </label>
+				<div className="mb-3">
+                    <label htmlFor="favoriteGame" className="text-light form-label ms-1">Favorite Game: </label>
                     <FavoriteDropdown gameList={gameList} />
 				</div>
-				<div class="dropdown">
-					<label htmlFor="gamesPlayed">Games Played:</label>
+				<div className="mb-3">
+					<label htmlFor="gamesPlayed" className="text-light form-label ms-1">Add to Games Played:</label>
 					<PlayedDropdown gameList={gameList} />
-                    <button onClick={addToHolder}>Add to Games Played</button>
+                    <button onClick={addToHolder} className="btn btn-danger btn-sm mt-2 ms-1">Add Game</button>
 				</div>
-				<div>
-                    <ul class="list-group">
+				<div className="mb-3">
+                <label className="text-light form-label ms-1">Games Played:</label>
+                    <ul className="list-unstyled d-flex flex-wrap">
                         {gamesPlayedHolder.map((game, index) => (
-                            <li class="list-group-item" key={index}>
+                            <li key={index} className="badge bg-info rounded-pill bg-opacity-50 ps-3 pe-2 me-2 mb-3">
                                 {game}
-                                <button onClick={() => removeFromHolder(index)}>
-                                Remove
+                                <button onClick={() => removeFromHolder(index)} className="btn btn-sm btn-danger ms-2 rounded-pill">
+                                X
                                 </button>
                             </li>
                         ))}
@@ -160,8 +165,8 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 
 				<div>
 					{/* "save" submits, "back" returns to show */}
-					<button className="btn btn-info me-2 btn-sm ms-2" type="submit">Save</button>
-					<button className="btn btn-info me-2 btn-sm ms-2" onClick={handleSection} value="ShowPlayer">
+					<button className="btn btn-danger me-2 ms-2" type="submit">Save</button>
+					<button className="btn btn-danger me-2 ms-2" onClick={handleSection} value="ShowPlayer">
 						Back to Player
 					</button>
 				</div>
