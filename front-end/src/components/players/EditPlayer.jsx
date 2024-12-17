@@ -171,3 +171,4 @@ const EditPlayer = ({ handleSection, storedPlayerId }) => {
 };
 
 export default EditPlayer;
+
